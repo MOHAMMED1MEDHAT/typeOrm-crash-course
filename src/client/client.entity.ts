@@ -1,3 +1,4 @@
+import { BankerEntity } from 'src/banker/banker.entity';
 import { TransactionEntity } from 'src/transaction/transaction.entity';
 import {
 	BaseEntity,
@@ -5,6 +6,7 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	ManyToMany,
 	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
@@ -46,6 +48,8 @@ export class ClientEntity extends BaseEntity {
 	@OneToMany(() => TransactionEntity, (transaction) => transaction.client)
 	transactions: TransactionEntity[];
 
+	@ManyToMany(() => BankerEntity)
+	bankers: BankerEntity[];
 	@CreateDateColumn()
 	createdAt: Date;
 

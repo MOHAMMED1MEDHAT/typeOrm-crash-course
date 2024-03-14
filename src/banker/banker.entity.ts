@@ -1,9 +1,12 @@
+import { ClientEntity } from 'src/client/client.entity';
 import {
 	BaseEntity,
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	JoinTable,
+	ManyToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -41,6 +44,14 @@ export class BankerEntity extends BaseEntity {
 		length: 10,
 	})
 	cardNumber: string;
+
+	@ManyToMany(() => ClientEntity)
+	@JoinTable({
+		name: 'banker_clients',
+		joinColumn: { name: 'banker_id', referencedColumnName: 'id' },
+		inverseJoinColumn: { name: 'client_id', referencedColumnName: 'id' },
+	})
+	clients: ClientEntity[];
 
 	@CreateDateColumn()
 	createdAt: Date;
