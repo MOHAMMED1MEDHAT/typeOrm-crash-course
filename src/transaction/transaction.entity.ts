@@ -7,40 +7,23 @@ import {
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
+import { TransactionTypes } from './transactionTypes.enum';
 
-@Entity('banker')
-export class BankerEntity extends BaseEntity {
+@Entity('transaction')
+export class TransactionEntity extends BaseEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
 	@Column({
-		type: 'uuid',
-		unique: true,
+		type: 'enum',
+		enum: TransactionTypes,
 	})
-	employeeId: string;
-
-	@Column()
-	name: string;
+	type: string;
 
 	@Column({
-		unique: true,
+		type: 'numeric',
 	})
-	email: string;
-
-	@Column()
-	phone: string;
-
-	@Column()
-	password: string;
-
-	@Column()
-	salt: string;
-
-	@Column({
-		unique: true,
-		length: 10,
-	})
-	cardNumber: string;
+	amount: number;
 
 	@CreateDateColumn()
 	createdAt: Date;
