@@ -1,2 +1,2 @@
 ### nest-typeOrm-demo
-- This is a simple project to demonstrate the use of TypeORM with NestJS. It is a simple REST API to manage users and their addresses. It uses a SQLite database to store the data.
+- This is a simple project to demonstrate the use of TypeORM with NestJS.
