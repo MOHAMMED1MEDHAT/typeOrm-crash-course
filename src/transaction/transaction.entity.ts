@@ -1,9 +1,12 @@
+import { ClientEntity } from 'src/client/client.entity';
 import {
 	BaseEntity,
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	JoinColumn,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -24,6 +27,13 @@ export class TransactionEntity extends BaseEntity {
 		type: 'numeric',
 	})
 	amount: number;
+
+	@ManyToOne(() => ClientEntity, (client) => client.transactions)
+	@JoinColumn({
+		name: 'client_id',
+		referencedColumnName: 'id',
+	})
+	client: ClientEntity;
 
 	@CreateDateColumn()
 	createdAt: Date;

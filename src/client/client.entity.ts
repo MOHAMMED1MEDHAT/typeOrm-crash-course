@@ -1,9 +1,11 @@
+import { TransactionEntity } from 'src/transaction/transaction.entity';
 import {
 	BaseEntity,
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -41,11 +43,8 @@ export class ClientEntity extends BaseEntity {
 	@Column()
 	salt: string;
 
-	// @Column()
-	// accounts: string[];
-
-	// @Column()
-	// transactions: string[];
+	@OneToMany(() => TransactionEntity, (transaction) => transaction.client)
+	transactions: TransactionEntity[];
 
 	@CreateDateColumn()
 	createdAt: Date;
